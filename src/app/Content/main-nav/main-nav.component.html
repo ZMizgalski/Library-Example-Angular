@@ -1,0 +1,268 @@
+<mat-sidenav-container [hasBackdrop]="false" class="sidenav-container">
+
+  <mat-sidenav #drawer
+               (click)="drawer.toggle()"
+               [attr.role]="(isHandset$ | async) ? 'navigation' : 'dialog'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [ngClass]="{hidden: !(isHandset$ | async)}"
+               [opened]="(isHandset$ | async) === false"
+               class="sidenav"
+               fixedInViewport>
+    <mat-toolbar>Menu</mat-toolbar>
+
+    <mat-nav-list>
+      <a mat-list-item routerLink="home">Strona Główna</a>
+      <a mat-list-item routerLink="products">Księgozbiór</a>
+      <a mat-list-item routerLink="contact">Kontakt</a>
+      <a mat-list-item routerLink="aboutus">O nas</a>
+      <a mat-list-item routerLink="regulations">Regulamin</a>
+      <a mat-list-item routerLink="delivery">Koszty Dostawy</a>
+      <a mat-list-item routerLink="news">Nowości</a>
+      <mat-divider></mat-divider>
+      <span [hidden]="isLoggedIn">
+         <a mat-list-item routerLink="register" style="color: orangered">
+        <mat-icon style="margin-right: 5px">account_balance_wallet</mat-icon>
+        Zarejestruj</a>
+      <a mat-list-item routerLink="login" style="color: orangered">
+        <mat-icon style="margin-right: 5px">account_box</mat-icon>
+        Zaloguj</a>
+      </span>
+      <span [hidden]="!isLoggedIn">
+         <a mat-list-item routerLink="account" style="color: orangered">
+        <mat-icon style="margin-right: 5px">account_circle</mat-icon>
+        Profil</a>
+      <a mat-list-item routerLink="library" style="color: orangered">
+        <mat-icon style="margin-right: 5px">library_books</mat-icon>
+        Wyporzyczone kiążki</a>
+        <a (click)="logout()" mat-list-item style="color: orangered">
+          <mat-icon style="margin-right: 5px">lock_open</mat-icon>
+          Wyloguj</a>
+      </span>
+      <mat-divider></mat-divider>
+      <span *ngIf="showAdminBoard" [hidden]="!isLoggedIn">
+         <a [routerLink]="['/addProduct']" mat-list-item style="color: orangered">
+        <mat-icon style="margin-right: 5px">note_add</mat-icon>
+        Dodaj Książke</a>
+           <a [routerLink]="['/productList']" mat-list-item style="color: orangered">
+        <mat-icon style="margin-right: 5px">post_add</mat-icon>
+        Lista Książek</a>
+      </span>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav #shop
+               [attr.role]="(isHandset$ | async) ? 'navigation' : 'dialog'"
+               [ngClass]="{phoneshop: (isHandset$ | async)}"
+               class="sidenav2"
+               fixedInViewport
+               position="end"
+               style="min-width: 304px;">
+    <mat-nav-list>
+
+      <mat-card
+        style="border-radius: 0; height: calc(100vh - 49px); display: flex; flex-flow: column; box-shadow: none;width: 300px">
+        <mat-toolbar
+          style="margin: 0;height: 60px;display: flex;padding: 0;justify-content: space-between;align-items: baseline;background: transparent;">
+          <button (click)="shop.close()" mat-icon-button style="color: black; display: flex">
+            <mat-icon style="font-size: 40px">clear</mat-icon>
+          </button>
+        </mat-toolbar>
+        <mat-card *ngIf="cartItems.length <= 0"
+                  style="display: flex; justify-content: center; flex-flow: column; text-align: center; box-shadow: none">
+          <p>Twój koszyk jest pusty.</p>
+          <button [routerLink]="['/products']" color="accent" mat-raised-button>Księgozbiór</button>
+        </mat-card>
+
+        <mat-card *ngFor="let items of card; let i = index" class="product-shopping-card">
+
+          <mat-card class="img-item">
+            <img
+              [src]="items.file" alt="">
+            <mat-card class="count-Banner">
+              <button (click)="cartService.increase(items)"
+                      [disabled]="!isLoggedIn || items.numberInStock === 0 || ((items.numberInStock + 1 <= (items.toOrder + items.count))  && this.cartService.cart.includes(items)) ||  ((items.numberInStock  - 1  <= (items.toOrder + items.count))  && !this.cartService.cart.includes(items))"
+                      mat-icon-button>
+                <mat-icon>add</mat-icon>
+              </button>
+              <label style="align-self: center; display: flex;">
+                <input [defaultValue]="1" [value]="items.toOrder" class="count-input" max="30" min="1" readonly
+                       style="pointer-events: none; cursor: none">
+              </label>
+              <button (click)="cartService.decrease(items)"
+                      [disabled]="!isLoggedIn || items.numberInStock === 1 || items.toOrder === 1"
+                      mat-icon-button>
+                <mat-icon>remove</mat-icon>
+              </button>
+            </mat-card>
+          </mat-card>
+          <mat-card class="data-item">
+            <mat-card-title>{{items.productName}}</mat-card-title>
+            <mat-card-subtitle>{{items.author}}</mat-card-subtitle>
+            <button (click)="deleteProduct(i, items)" mat-raised-button style="background: red" type="button">Usuń
+            </button>
+          </mat-card>
+        </mat-card>
+        <button (click)="cartService.checkout(cartItemsToCheckout)" [disabled]="cartService.cart.length === 0"
+                color="primary" mat-raised-button
+                style="margin-top: auto;margin-bottom: 10px">Idź do kasy
+        </button>
+
+      </mat-card>
+    </mat-nav-list>
+  </mat-sidenav>
+
+
+  <mat-sidenav-content style="overflow-x: hidden; overflow-y: auto">
+    <span id="moveTop"></span>
+
+    <mat-toolbar [ngClass]="{hidden: (isHandset$ | async)}" class="top-tol" color="accent" >
+
+
+      <mat-toolbar [ngClass]="{tolhead: (isHandset$ | async)}" class="transparent">
+
+        <span>Web</span>
+        <span class="sp-flex"></span>
+
+        <span [hidden]="!isLoggedIn">
+             <button (click)="shop.toggle()" mat-icon-button style="color: white">
+          <mat-icon [matBadgeHidden]="cartItems.length <= 0" [matBadge]="calcTotalItemsInCart"
+                    matBadgePosition="below | before"
+                    matBadgeSize="small">shoppind_card</mat-icon>
+        </button>
+
+    <button #r="matMenuTrigger" [matMenuTriggerFor]="menu" mat-icon-button>
+      <mat-icon (click)="open(r)" (mouseenter)="open(r)" style="color: white">account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+      <button [routerLink]="['/library']" mat-menu-item>
+        <mat-icon>home</mat-icon>
+        <span>Wyporzyczone kiążki</span>
+      </button>
+      <button [routerLink]="['/account']" mat-menu-item>
+        <mat-icon>people_outline</mat-icon>
+        <span>Profil</span>
+      </button>
+      <button *ngIf="showAdminBoard" [routerLink]="['/addProduct']" mat-menu-item>
+        <mat-icon>note_add</mat-icon>
+        <span>Dodaj Książke</span>
+      </button>
+       <button *ngIf="showAdminBoard" [routerLink]="['/productList']" mat-menu-item>
+        <mat-icon>post_add</mat-icon>
+        <span>Lista Książek</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>videocam</mat-icon>
+        <span (click)="logout()">Wyloguj</span>
+      </button>
+    </mat-menu>
+        </span>
+        <a [hidden]="isLoggedIn" class="hrefspup" mat-list-item routerLink="login">Zaloguj</a>
+        <a [hidden]="isLoggedIn" class="hrefspup" mat-list-item routerLink="register">Zarejestruj</a>
+
+      </mat-toolbar>
+
+    </mat-toolbar>
+
+
+    <mat-toolbar [ngClass]="{phidden: (isHandset$ | async), searched: !(isOpen)}" class="scrolling-search-box">
+
+      <mat-toolbar class="search-tol">
+
+        <label [ngClass]="{searched: (isOpen), phoneSearch: (isHandset$ | async)}" class="search-box">
+          <input #searchBar (keyup)="onKeyPress(searchBar.value)" [(ngModel)]="this.pageSer.filterString"
+                 class="search-txt" matInput placeholder="Wyszukaj"
+                 type="text">
+        </label>
+
+      </mat-toolbar>
+
+    </mat-toolbar>
+
+    <mat-card [@openClose]="isOpen ? 'open' : 'closed'" class="curtin">
+      <mat-card class="curtin-2">
+
+        <button (click)="clear(searchBar.value = null)"
+                style="min-width: 100px; white-space: pre-line"
+                *ngFor="let result of this.pageSer.searchbarData | filterForPages: this.pageSer.filterString"
+                [routerLink]="[result.rout]" mat-raised-button>
+          {{result.page}}
+        </button>
+      </mat-card>
+
+    </mat-card>
+
+
+    <mat-toolbar [ngClass]="{tolhead: (isHandset$ | async)}" class="tools" color="accent" >
+
+      <a [ngClass]="{hidden: (isHandset$ | async)}" class="hrefsp" mat-list-item routerLink="home">Strona Główna</a>
+      <a [ngClass]="{hidden: (isHandset$ | async)}" class="hrefsp" mat-list-item routerLink="contact">Kontakt</a>
+      <a [ngClass]="{hidden: (isHandset$ | async)}" class="hrefsp" mat-list-item routerLink="products">Księgozbiór</a>
+      <a [ngClass]="{hidden: (isHandset$ | async)}" class="hrefsp" mat-list-item routerLink="aboutus">O nas</a>
+      <a [ngClass]="{hidden: (isHandset$ | async)}" class="hrefsp" mat-list-item routerLink="regulations">Regulamin</a>
+      <a [ngClass]="{hidden: (isHandset$ | async)}" class="hrefsp" mat-list-item routerLink="delivery">Koszty
+        Dostawy</a>
+      <a [ngClass]="{hidden: (isHandset$ | async)}" class="hrefsp" mat-list-item routerLink="news">Nowości</a>
+
+      <span [ngClass]="{marginUserData: (isHandset$ | async)}">
+        <button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async"
+          [ngClass]="{hidden: !(isHandset$ | async)}"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          style="color: white"
+          type="button">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      </span>
+
+      <span [hidden]="isLoggedIn" [ngClass]="{marginUserData: (isHandset$ | async)}">
+      <a [ngClass]="{hidden: !(isHandset$ | async)}" class="hrefspup" mat-list-item routerLink="login"
+         style="padding: 0; margin: 0">Zaloguj</a>
+      </span>
+
+      <span [hidden]="isLoggedIn">
+         <a [ngClass]="{hidden: !(isHandset$ | async)}" class="hrefspup" mat-list-item routerLink="register"
+            style="padding: 0; margin: 0">Zarejestruj</a>
+      </span>
+      <span [hidden]="!isLoggedIn">
+          <button
+            (click)="shop.open()"
+            [ngClass]="{hidden: !(isHandset$ | async)}"
+            mat-icon-button
+            style="
+          width: 35px !important;
+          height: 35px !important;
+          line-height:50% !important;
+          ">
+         <mat-icon style="color: white" [matBadgeHidden]="cartItems.length <= 0" [matBadge]="calcTotalItemsInCart"
+                   matBadgePosition="below | before"
+                   matBadgeSize="small">shoppind_card</mat-icon>
+      </button>
+      </span>
+
+
+    </mat-toolbar>
+
+
+    <router-outlet ></router-outlet>
+
+
+    <mat-card-footer id="foot-end" >
+      <mat-toolbar class="tools" color="accent" style="height: 200px; background: #2f2f2f; justify-content: center;" >
+
+        <a class="hrefsp" mat-list-item routerLink="home">Strona Główna</a> |
+        <a class="hrefsp" mat-list-item routerLink="products">Księgozbiór</a> |
+        <a class="hrefsp" mat-list-item routerLink="contact">Kontakt</a>
+
+      </mat-toolbar>
+      <mat-toolbar [ngClass]="{phonemode: (isHandset$ | async)}"
+                   style="background: rgba(23,175,34,0.87); justify-content: center;">
+        Odpowiednia biblioteka dla zorganizowanych ludzi
+      </mat-toolbar>
+
+    </mat-card-footer>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

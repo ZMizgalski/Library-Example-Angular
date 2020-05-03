@@ -1,0 +1,16 @@
+<mat-card
+
+  class="backimg"
+  [ngStyle]="{background: 'url(https://images.unsplash.com/photo-1485322551133-3a4c27a9d925?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)'}"
+  [ngClass]="{phone: (isHandset$ | async)}"
+  >
+  <mat-card-content class="headcont">
+    <mat-card-title class="headtitle">Witaj!</mat-card-title>
+    <button mat-raised-button color="warn" [routerLink]="['/products']" class="centralbut">Zobacz nasz księgozbiór</button>
+  </mat-card-content>
+
+
+</mat-card>
+
+
+

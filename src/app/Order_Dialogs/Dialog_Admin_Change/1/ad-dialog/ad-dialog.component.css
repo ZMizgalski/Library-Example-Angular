@@ -1,0 +1,33 @@
+.count-Banner {
+  display: flex;
+  box-shadow: none;
+  justify-content: center;
+}
+
+.count-input {
+  width: 26px;
+  height: 24px;
+  align-self: center;
+  outline: none !important;
+  border-radius: 100%;
+  color: black;
+  border: solid 1px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.under-banner {
+  padding: 0;
+  margin-top: 20px;
+  display: flex;
+  box-shadow: none;
+  justify-content: space-between;
+}
+
+.head-ban-con {
+  flex-direction: column;
+  padding: 0;
+  display: flex;
+  box-shadow: none;
+  justify-content: center;
+}

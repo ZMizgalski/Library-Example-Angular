@@ -1,0 +1,23 @@
+<mat-card *ngFor="let product of this.editProductService.products" class="head-ban-con">
+  <mat-card class="count-Banner">
+    <button (click)="increase(product)"
+            [disabled]="!isLoggedIn || isProductEdited"
+            mat-icon-button>
+      <mat-icon>add</mat-icon>
+    </button>
+    <label style="align-self: center; display: flex;">
+      <input [value]="product.count" class="count-input" max="30" min="1" readonly
+             style="pointer-events: none; cursor: none">
+    </label>
+    <button (click)="decrease(product)"
+            [disabled]="!isLoggedIn || product.count === 0 || isProductEdited"
+            mat-icon-button>
+      <mat-icon>remove</mat-icon>
+    </button>
+  </mat-card>
+
+  <mat-card class="under-banner">
+    <button [disabled]="isProductEdited" (click)="apply(product)" color="accent" mat-raised-button>Zastosuj</button>
+    <button [disabled]="isProductEdited" (click)="close()" color="warn" mat-raised-button>Zamknij</button>
+  </mat-card>
+</mat-card>

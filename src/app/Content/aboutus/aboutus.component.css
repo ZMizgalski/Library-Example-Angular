@@ -1,0 +1,39 @@
+
+.content {
+  overflow: hidden;
+  text-align: center;
+  height: auto !important;
+  min-height: calc(100vh - 160px);
+  align-items : center ;
+  justify-content : center;
+  margin: 0;
+  border-radius: 0;
+}
+.phonegrid {
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+}
+.head-title {
+  font-size: 40px;
+  text-align: left;
+  padding: 40px;
+}
+.map {
+  overflow: hidden;
+  text-align: center;
+  height: auto !important;
+  min-height: calc(100vh - 160px);
+  align-items : center ;
+  justify-content : center;
+  margin: 0;
+  border-radius: 0;
+}
+.img {
+  padding: 20px;
+  margin: 20px;
+  box-shadow: none;
+}
+.noSha {
+  box-shadow: none;
+}

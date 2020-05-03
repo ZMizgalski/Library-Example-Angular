@@ -1,0 +1,106 @@
+.product {
+  position: unset;
+  justify-content: center;
+  width: 200px;
+  background: #ffffff;
+  margin: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  text-align: center;
+
+}
+
+
+.product-list {
+  margin: 0 auto 20px auto;
+  text-align: center;
+  box-shadow: none;
+}
+
+.cinput {
+  padding-left: 2%;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  width: 80px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  border: none;
+  background: #d3d3d3;
+  color: black;
+  font-size: 20px;
+  outline: none !important;
+  line-height: 25px;
+  border-radius: 15px;
+  user-select: none
+}
+
+.text-img-cen {
+  pointer-events:none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  font-family: "Alegreya Sans SC", cursive;
+}
+.product img {
+  transition: all .25s ease;
+  opacity: 1;
+  border-radius: 10px 10px 0 0;
+  display: block;
+}
+.product img:hover {
+  filter: blur(6px);
+
+}
+.overlay {
+  color: #fff;
+  opacity: 0;
+  transition: .3s all;
+}
+.hover-container:hover .overlay {
+  opacity: 1;
+
+}
+.mat-card {
+  position: unset;
+}
+
+.hover-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.leftFilter {
+  min-height: border-box;
+  background: lightgrey;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  justify-content: left;
+  width: calc(30ch);
+  float: left;
+
+}
+
+.extraproductcon {
+  text-align: -webkit-center;
+  margin-left: 270px;
+  min-height: calc(100vh - 37px);
+}
+
+.hidden {
+  display: contents;
+}
+
+.phonegrid {
+  margin-left: 0;
+}

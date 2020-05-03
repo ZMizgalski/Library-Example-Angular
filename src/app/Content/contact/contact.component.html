@@ -1,0 +1,35 @@
+<mat-card class="content" color="warn">
+
+ <mat-card-title class="head-title">
+   Dział obsługi klienta
+ </mat-card-title>
+  <mat-card-title>
+    Telefon	12 210 09 02	 (linia czynna od poniedziałku do piątku w godzinach 8.00–20.00)
+  </mat-card-title>
+
+  <mat-grid-list [cols]="breakpoint" rowHeight="2:1" (window:resize)="onResize($event)" >
+
+    <mat-grid-tile>
+      Email
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      Lokalizacja <br>
+
+      Kraków
+      al. Daszyńskiego 8, 31-534 Kraków
+      Godziny otwarcia: pon. - pt 8-20, sob. 10-16
+
+    </mat-grid-tile>
+
+  </mat-grid-list>
+  <mat-card class="conimg"
+
+  [ngStyle]="{background:'url(https://images.pexels.com/photos/919188/pexels-photo-919188.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)'}"
+  [ngClass]="{phone: (isHandset$ | async)}">
+
+  </mat-card>
+
+
+</mat-card>
+

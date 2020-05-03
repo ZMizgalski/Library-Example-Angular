@@ -1,0 +1,82 @@
+<mat-card style=" z-index: -3; min-height: 1100px">
+  <mat-card class="spinner-container">
+    <mat-spinner class="spinner-cont" *ngIf="!contentLoaded"></mat-spinner>
+  </mat-card>
+  <mat-card [ngClass]="{headphone: !(isHandset$ | async)}" class="head" *ngIf="contentLoaded">
+
+
+    <mat-card class="head-con">
+
+
+      <mat-toolbar class="head-con-toolbar">
+        <mat-card-title>Witaj {{loggedUser.username}}</mat-card-title>
+
+      </mat-toolbar>
+      <mat-divider></mat-divider>
+      <mat-toolbar style="margin-bottom: 10px; background: transparent; height: 10px"></mat-toolbar>
+
+
+      <mat-card-content >
+        <mat-card [ngClass]="{headphoneuser: (isHandset$ | async)}" class="head-con-user">
+          <div  class="header-image" mat-card-avatar></div>
+        </mat-card>
+        <mat-card style=" box-shadow: none;">
+          <mat-card-title>Dane:</mat-card-title>
+          <mat-card-subtitle>
+            Email: {{loggedUser.email}}
+            <br>
+            Nazwa użytkownika: {{loggedUser.username}}
+          </mat-card-subtitle>
+        </mat-card>
+       <span class="content-card">
+         <mat-card [ngClass]="{headphoneitems: (isHandset$ | async)}" class="head-con-items" [ngStyle]="{background: '#b9b9b9'}">
+          <mat-card-title style="color: orangered; font-size: 40px; font-family: 'Arial Black',sans-serif">
+             {{loggedUser.read}}
+           </mat-card-title>
+            <mat-card-subtitle>
+             Przeczytane książki
+           </mat-card-subtitle>
+         </mat-card>
+         <mat-card [ngClass]="{headphoneitems: (isHandset$ | async)}" class="head-con-items" [ngStyle]="{background: '#b9b9b9'}">
+           <mat-card-title style="color: orangered; font-size: 40px; font-family: 'Arial Black',sans-serif">
+             {{loggedUser.bookedNow}}
+           </mat-card-title>
+            <mat-card-subtitle>
+             Wypożyczone książki
+           </mat-card-subtitle>
+         </mat-card>
+       </span>
+
+      </mat-card-content>
+
+    </mat-card>
+
+    <mat-card class="head-con">
+
+
+      <mat-toolbar class="head-con-toolbar">
+        <mat-card-title>Osobista biblioteczka</mat-card-title>
+      </mat-toolbar>
+      <mat-divider></mat-divider>
+      <mat-toolbar style="margin-bottom: 10px; background: transparent; height: 10px"></mat-toolbar>
+          <mat-card [ngClass]="{headphoneitems: (isHandset$ | async)}" class="head-con-items" [ngStyle]="{background: '#b9b9b9'}">
+            <mat-card-title style="color: #18ff43; font-size: 40px; font-family: 'Arial Black',sans-serif">
+              {{loggedUser.bookedNow}}
+            </mat-card-title>
+            <mat-card-subtitle style="color: black">
+              Wypożyczone książki
+            </mat-card-subtitle>
+          </mat-card>
+          <mat-card [ngClass]="{headphoneitems: (isHandset$ | async)}" class="head-con-items" [ngStyle]="{background: '#b9b9b9'}">
+            <mat-card-title style="color: #18ff43; font-size: 40px; font-family: 'Arial Black',sans-serif">
+              {{loggedUser.read}}
+            </mat-card-title>
+            <mat-card-subtitle style="color: black">
+              Przeczytane książki
+            </mat-card-subtitle>
+          </mat-card>
+    </mat-card>
+
+  </mat-card>
+
+</mat-card>

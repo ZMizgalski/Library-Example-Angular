@@ -1,0 +1,120 @@
+<mat-card style="margin: 0; padding: 0; border-radius: 0">
+  <mat-card [ngClass]="{hidden: (isHandset$ | async)}" class="leftFilter">
+    <mat-toolbar>
+      <p>Filter</p>
+      <span style="flex: 1 1 auto"></span>
+      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.clearFilter($event)" color="warn" mat-raised-button name="clearFilter">Wyczyść filter
+      </button>
+    </mat-toolbar>
+
+    <mat-accordion>
+
+      <mat-expansion-panel style="border-radius: 0; display: flex; flex-flow: column; justify-content: center"
+                           [expanded]="filterService.closePanel1"
+                           (closed)="filterService.closePanel1 = false"
+                           (opened)="filterService.closePanel1 = true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Belerestyka
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <span style="display: flex; flex-flow: column; justify-content: center">
+
+      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Wszystkie')" color="accent"
+              mat-raised-button style="margin-bottom: 10px">Wszyskie</button>
+      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Przygodowe')" color="accent"
+              mat-raised-button style="margin-bottom: 10px">Przygodowe</button>
+      <button  [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Podróżnicze')" color="accent"
+              mat-raised-button style="margin-bottom: 10px">Podróżnicze</button>
+      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Historyczne')" color="accent"
+              mat-raised-button style="margin-bottom: 10px">Historyczne</button>
+      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Postapo')" color="accent"
+              mat-raised-button style="margin-bottom: 10px">Postapo</button>
+      <button  [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Fantasy')"
+              color="accent" mat-raised-button style="margin-bottom: 10px">Fantasy, science fiction</button>
+      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Horror')" color="accent"
+              mat-raised-button style="margin-bottom: 10px">Horror</button>
+          <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Lektury')" color="accent"
+                  mat-raised-button style="margin-bottom: 10px">Lektury</button>
+      </span>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel style="border-radius: 0"  [expanded]="filterService.closePanel2"
+                           (closed)="filterService.closePanel2 = false"
+                           (opened)="filterService.closePanel2 = true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Literatura Dziecięca
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <span style="display: flex; flex-flow: column; justify-content: center">
+          <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Literatura Dziecięca','Wszystkie')" color="accent"
+                  mat-raised-button style="margin-bottom: 10px">Wszyskie</button>
+      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Literatura Dziecięca','Bajki')" color="accent"
+              mat-raised-button style="margin-bottom: 10px">Bajki</button>
+      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Literatura Dziecięca','Lektury')" color="accent"
+              mat-raised-button>Lektury</button>
+      </span>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel style="border-radius: 0"  [expanded]="filterService.closePanel3"
+                           (closed)="filterService.closePanel3 = false"
+                           (opened)="filterService.closePanel3 = true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Komiksy
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <span style="display: flex; flex-flow: column; justify-content: center">
+      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Komiksy','Wszystkie')" color="accent" mat-raised-button
+              style="margin-bottom: 10px">Wszyskie</button>
+      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Komiksy','Przygodowe')" color="accent"
+              mat-raised-button style="margin-bottom: 10px">Przygodowe</button>
+      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Komiksy','Podróżnicze')" color="accent"
+              mat-raised-button style="margin-bottom: 10px">Podróżnicze</button>
+      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Komiksy','Historyczne')" color="accent"
+              mat-raised-button style="margin-bottom: 10px">Historyczne</button>
+      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Komiksy','Postapo')" color="accent" mat-raised-button
+              style="margin-bottom: 10px">Postapo</button>
+      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Komiksy','Fantasy')" color="accent"
+              mat-raised-button style="margin-bottom: 10px">Fantasy, science fiction</button>
+      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Komiksy','Horror')" color="accent" mat-raised-button
+              style="margin-bottom: 10px">Horror</button>
+      </span>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
+    <mat-toolbar *ngIf="!filterService.BgcategoryNotClicked">
+      <p>Tagi</p>
+      <span style="flex: 1 1 auto"></span>
+      <p>
+        <label>
+          <input placeholder="Wyszukaj"
+                 [disabled]="!auth.productsLoaded"
+                 [(ngModel)]="this.filterService.textStringForFilter"
+                 style="border-radius: 5px; border: none; outline: none!important; background: rgba(200, 200, 200, 0.72); line-height: 25px;padding-left: 10px"
+                 type="text">
+        </label>
+      </p>
+    </mat-toolbar>
+    <mat-card style="margin: 10%; justify-content: center" *ngIf="!filterService.BgcategoryNotClicked">
+    <span style="display: flex; flex-flow: column; justify-content: center">
+     <mat-checkbox (change)="this.filterService.filter($event, matCheckboxes.category)"
+                   [disabled]="!auth.productsLoaded"
+                   *ngFor="let matCheckboxes of filterService.checkboxes$ | async" [(ngModel)]="matCheckboxes.isChecked"
+                   [value]="matCheckboxes.category">{{matCheckboxes.category}}</mat-checkbox>
+    </span>
+    </mat-card>
+  </mat-card>
+  <mat-card [ngClass]="{phonegrid: (isHandset$ | async)}" class="extraproductcon">
+    <app-product></app-product>
+  </mat-card>
+</mat-card>
+
+
+
+
+
+
+

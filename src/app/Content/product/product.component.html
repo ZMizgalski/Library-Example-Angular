@@ -1,0 +1,59 @@
+<mat-card *ngIf="!auth.productsLoaded"  style="display: flex ;width: max-content; align-items: center; background: transparent; box-shadow: none">
+  <mat-spinner></mat-spinner>
+</mat-card>
+<mat-card
+  *ngFor='let product of products | filerForProducts: [this.filterService.stringForFilter] | textFilterForProducts: this.filterService.textStringForFilter | buttonFilterForProducts: [this.filterService.type2, this.filterService.category2]'
+  class="product-list">
+  <span id="content" *ngIf="(isHandset$ | async)"></span>
+
+  <mat-card class="product" *ngIf="auth.productsLoaded">
+    <mat-card-content class="hover-container" style="z-index: 0">
+      <img alt=""
+           mat-card-image
+           style="margin: 0 -16px 0px -16px;"
+           [src]="product.file">
+      <div class="overlay">
+        <div class="text-img-cen">
+          {{product.productName}} <br>
+          {{product.author}}
+        </div>
+      </div>
+    </mat-card-content>
+    <ng-form>
+      <mat-card
+        style="box-shadow: none; min-height: 16px; display: flex; flex-direction: column; justify-content: center">
+        <p *ngIf="product.numberInStock === 0" style="color: red">
+          Obecnie brak na stanie!</p>
+        <p *ngIf="product.numberInStock !== 0" style="color: green">W magazynie: {{product.numberInStock}}</p>
+      </mat-card>
+      <mat-grid-list cols="3" rowHeight="1:1">
+        <mat-grid-tile colspan="2">
+          <button (click)="cartService.increaseCountOnProduct(product)"
+                  [disabled]="!isLoggedIn ||  product.numberInStock === 0 || ((product.numberInStock  <= (product.toOrder + product.count))  && this.cartService.cart.includes(product)) ||  ((product.numberInStock  + 1  <= (product.toOrder + product.count))  && !this.cartService.cart.includes(product))"
+                  mat-icon-button>
+            <mat-icon>add</mat-icon>
+          </button>
+          <label>
+            <input [value]="product.count" class="cinput" disabled max="30" maxlength="2" min="1" readonly
+                   style="pointer-events: none; cursor: none" type="number">
+          </label>
+          <button (click)="cartService.decreaseCountOnProduct(product)"
+                  [disabled]="!isLoggedIn || product.numberInStock === 0 || product.numberInStock === 1 || product.count === 1 || product.toOrder === product.numberInStock"
+                  mat-icon-button>
+            <mat-icon>remove</mat-icon>
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button [disabled]="!isLoggedIn || product.numberInStock === 0 || onlyOne(product)"
+                  mat-icon-button
+                  style="color: green">
+            <mat-icon (click)="addToCard(product)"
+                      [ngClass]="{noAuthProductRed: !isLoggedIn, noAuthProductYellow: product.numberInStock === 0, noProductRed: product.toOrder >= product.numberInStock, noProductGreen: onlyOne(product) && isLoggedIn }">
+              add_shopping_cart
+            </mat-icon>
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </ng-form>
+  </mat-card>
+</mat-card>

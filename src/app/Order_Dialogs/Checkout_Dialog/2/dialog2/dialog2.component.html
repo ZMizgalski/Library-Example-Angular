@@ -1,0 +1,39 @@
+<mat-card class="dialog1-container">
+  <mat-card style="padding: 0;width: 100%;min-width: 300px;margin: 0;display: flex;justify-content: space-between; box-shadow: none">
+    <button (click)="GoBack()" [disabled]="orderClicked" color="warn" mat-raised-button>Poprzednia strona</button>
+    <h2 mat-dialog-title>Podsumowane zamówienie</h2>
+  </mat-card>
+  <mat-dialog-content style="overflow: hidden;max-height: fit-content;">
+
+    <mat-card style="background: transparent;box-shadow: none;display: flex;justify-content: center;align-items: center;width: 100%;height: 100%;flex-direction: column" *ngIf="orderClicked">
+      <mat-spinner></mat-spinner>
+    </mat-card>
+
+    <mat-card style="box-shadow: none;background: transparent;padding: 0" *ngIf="!orderClicked">
+      <mat-card *ngFor="let items of cartService.orderedItems; let i = index" class="product">
+        <mat-card class="product-img">
+          <img [src]="items.file" alt="">
+          <mat-card class="product-item-data">
+            <mat-card-title>{{items.productName}}</mat-card-title>
+            <mat-card-subtitle>{{items.author}}</mat-card-subtitle>
+          </mat-card>
+          <mat-card class="count">
+            <label style="align-self: center; display: flex;">
+              <input [defaultValue]="1" [value]="items.toOrder" class="count-input" max="30" min="1" readonly
+                     style="pointer-events: none; cursor: none">
+            </label>
+          </mat-card>
+        </mat-card>
+      </mat-card>
+    </mat-card>
+
+
+
+  </mat-dialog-content>
+  <mat-card class="dialog1-footer">
+    <button [disabled]="orderClicked" (click)="CompleteOrder(cartService.orderedItems, userToOrder.email)" color="accent" mat-raised-button>
+      Złóż zamówienie
+    </button>
+    <button (click)="close()" [disabled]="orderClicked" color="primary" mat-raised-button>Zamknij</button>
+  </mat-card>
+</mat-card>

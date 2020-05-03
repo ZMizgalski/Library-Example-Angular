@@ -1,0 +1,54 @@
+<mat-card class="product-list-container">
+  <mat-card *ngIf="!isProductAdListLoaded" style="background: transparent; box-shadow: none">
+    <mat-spinner></mat-spinner>
+  </mat-card>
+  <mat-card *ngIf="isProductAdListLoaded" style="box-shadow: none; background: transparent">
+    <p style="text-align: center">Lista Książek:</p>
+
+
+    <mat-card *ngFor="let product of products" class="admin-product">
+      <mat-card class="img-admin">
+        <img [ngClass]="{phoneImg: (isHandset$ | async)}" class="img-list" [src]="product.file" alt="">
+      </mat-card>
+
+      <mat-card class="admin-product-content">
+        <p>
+          <mat-card-title class="title-p">Tytuł:
+            <mat-card-subtitle class="subtitle-p">{{product.productName}}</mat-card-subtitle>
+          </mat-card-title>
+        </p>
+        <p>
+          <mat-card-title class="title-p">Autor:
+            <mat-card-subtitle class="subtitle-p">{{product.author}}</mat-card-subtitle>
+          </mat-card-title>
+        </p>
+        <p>
+          <mat-card-title class="title-p">Kategoria:
+            <mat-card-subtitle class="subtitle-p">{{product.category}}</mat-card-subtitle>
+          </mat-card-title>
+        </p>
+        <p>
+          <mat-card-title class="title-p">W magazynie:
+
+            <mat-card-subtitle class="subtitle-p">
+              <mat-card style="margin: 0;padding: 0;display: flex;box-shadow: none">
+                {{product.numberInStock}}
+              </mat-card>
+            </mat-card-subtitle>
+            <button (click)="edit(product)" color="accent" mat-raised-button
+                    routerLink="." fragment="spinner"
+                    style="margin-left: 40px; margin-right: 40px">Edytuj
+            </button>
+          </mat-card-title>
+        </p>
+        <p>
+          <mat-card-title class="title-p">Gatunek:
+            <mat-card-subtitle class="subtitle-p">{{product.bookType}}</mat-card-subtitle>
+          </mat-card-title>
+        </p>
+        <button (click)="deleteProduct(product.id)" class="del-button" color="accent" mat-raised-button>Usuń</button>
+      </mat-card>
+    </mat-card>
+  </mat-card>
+
+</mat-card>

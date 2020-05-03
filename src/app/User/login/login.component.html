@@ -1,0 +1,62 @@
+<mat-card class="input-container">
+  <mat-card class="input-card">
+    <mat-card style="box-shadow: none; padding-bottom: 40px">
+      <mat-card-title style="color: #17af22; float: left; margin-bottom: 30px; font-size: 30px">
+        Login
+      </mat-card-title>
+      <form (ngSubmit)="onSubmit(registerForm.value)" [formGroup]="registerForm">
+        <mat-form-field appearance="outline" color="accent" style="margin-bottom: 10px">
+          <label for="username"> </label>
+          <input
+            formControlName="username"
+            id="username"
+            matInput
+            name="username"
+            placeholder="Nazwa użytkownika"
+            required
+            type="text">
+          <mat-error>
+            <span *ngIf="!registerForm.get('username').valid && registerForm.get('username').touched" style="color: red">Nazwa użytkownika jest zła</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" color="accent">
+
+          <label for="loginPassword"> </label>
+          <input
+            formControlName="password"
+            id="loginPassword"
+            matInput
+            name="password"
+            placeholder="Hasło"
+            required
+            type="password">
+          <mat-error>
+            <span *ngIf="!registerForm.get('password').valid && registerForm.get('password').touched"
+                  style="color: red">Hasło jest za krótkie</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-checkbox (change)="saveData($event)">Zapamiętaj mnie</mat-checkbox>
+        <mat-card style="box-shadow: none;">
+          <mat-card-title class="fgrpass" style="float: left"></mat-card-title>
+
+          <mat-card-title class="fgrpass" style="float: left">
+            <a [routerLink]="['/register']" routerLinkActive="active"
+               style="text-decoration: none; color: black">Zarejestruj</a>
+          </mat-card-title>
+          <mat-card-title class="fgrpass" style="float: right">
+            <a [routerLink]="['/reset-password']" routerLinkActive="active"
+               style="text-decoration: none; color: black">Zapomniałeś hasła?</a>
+          </mat-card-title>
+
+        </mat-card>
+
+        <button [disabled]="!registerForm.valid || isLoggedIn" class="inpbut" color="accent" mat-raised-button type="submit">
+          Zaloguj
+        </button>
+      </form>
+
+    </mat-card>
+
+  </mat-card>
+
+</mat-card>

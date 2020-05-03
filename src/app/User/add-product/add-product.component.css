@@ -1,0 +1,20 @@
+.addProductContainer {
+  display: flex;
+  align-items: center;
+  margin: 20px auto 20px auto;
+  justify-content: center;
+  text-align: center;
+  box-shadow: none;
+  min-height: calc(100vh - 190px);
+}
+
+.addProductData {
+  margin: 10px;
+  padding: 10px;
+  position: relative;
+  justify-content: center;
+  width: 250px;
+  border-radius: 10px;
+  display: inline-block;
+  text-align: center;
+}

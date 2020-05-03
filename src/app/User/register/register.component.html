@@ -1,0 +1,69 @@
+<mat-card class="input-container">
+  <mat-card class="input-card">
+    <mat-card style="box-shadow: none; padding-bottom: 10px">
+      <mat-card-title style="color: #17af22; text-align: center; margin-bottom: 30px; font-size: 26px">
+        Zarejestruj użytkownika
+      </mat-card-title>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+        <mat-form-field appearance="outline" color="accent" style="margin-bottom: 10px">
+          <label for="registerEmail"></label>
+          <input
+            formControlName="email"
+            id="registerEmail"
+            matInput
+            name="email"
+            placeholder="Email"
+            required
+            type="email">
+          <mat-error>
+            <span *ngIf="!registerForm.get('email').valid && registerForm.get('email').touched" style="color: red">Wrong email</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" color="accent">
+          <label for="registerUsername"></label>
+          <input
+            formControlName="username"
+            required
+            name="username"
+            type="text"
+            id="registerUsername"
+            matInput
+            placeholder="Nazwa użytkownika">
+          <mat-error>
+            <span *ngIf="!registerForm.get('username').valid && registerForm.get('username').touched"
+                  style="color: red">Zła nazwa użytkownika</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" color="accent">
+          <label for="registerPassword"></label>
+          <input
+            formControlName="password"
+            required
+            name="password"
+            type="password"
+            id="registerPassword"
+            matInput
+            placeholder="Hasło">
+          <mat-error>
+            <span *ngIf="!registerForm.get('password').valid && registerForm.get('password').touched"
+                  style="color: red">Złe hasło</span>
+          </mat-error>
+
+        </mat-form-field>
+
+        <mat-card style="box-shadow: none;">
+          <mat-card-title class="fgrpass" style="float: right">
+            <a [routerLink]="['/login']" style="color: black; text-decoration: none">Zaloguj</a>
+          </mat-card-title>
+          <button class="inpbut" type="submit" color="accent" mat-raised-button [disabled]="!registerForm.valid">
+            Zarejestruj
+          </button>
+        </mat-card>
+      </form>
+
+    </mat-card>
+
+
+  </mat-card>
+
+</mat-card>

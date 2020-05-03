@@ -1,0 +1,98 @@
+.head {
+  z-index: -2;
+  width: 100%;
+  background: transparent;
+  margin: 20px auto 20px auto;
+  text-align: center;
+  box-shadow: none;
+  box-sizing: border-box;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(auto-fit, minmax(35vh, 1fr));
+}
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+  background: transparent;
+}
+.spinner-cont {
+
+}
+.headphone {
+  width: 80%;
+}
+
+.head-con {
+  display: inline-block;
+}
+
+
+.head-con-toolbar {
+  background: transparent;
+  height: 40px;
+}
+
+.head-con-items {
+  margin: 10px;
+  height: max-content;
+  position: relative;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.content-card {
+  text-align: center;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));;
+  grid-template-rows: repeat(3, 120px);
+}
+
+.cont-tool-left {
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+.cont-tool-right {
+  position: relative;
+  justify-content: center;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  background: transparent;
+}
+
+.head-con-user {
+  display: flex;
+  box-shadow: none;
+  margin: 10px;
+  position: relative;
+  justify-content: center;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.head-con-items-right {
+  background: #cacaca;
+  height: 12vh;
+  margin-bottom: 1vh;
+  display: flex;
+  align-items: flex-start;
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+  align-items: center;
+
+}
+
+.header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+  height: 15vh;
+  width: 15vh;
+
+}

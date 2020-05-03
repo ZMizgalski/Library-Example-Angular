@@ -1,0 +1,60 @@
+<mat-card class="dialog1-container">
+  <h2 mat-dialog-title>Koszyk</h2>
+  <mat-dialog-content style="overflow: hidden;max-height: fit-content;">
+
+    <mat-card *ngIf="cartService.orderedItems.length <= 0"
+              style="display: flex; justify-content: center; flex-flow: column; text-align: center; box-shadow: none">
+      <p>Twój koszyk jest pusty.</p>
+      <button (click)="close()" [routerLink]="['/products']" color="accent" mat-raised-button>Repertuar</button>
+    </mat-card>
+
+    <mat-card *ngFor="let items of cartService.orderedItems; let i = index" class="product">
+
+      <mat-card class="product-img">
+
+        <img [src]="items.file" alt="">
+
+        <mat-card class="product-item-data">
+          <mat-card-title>{{items.productName}}</mat-card-title>
+          <mat-card-subtitle>{{items.author}}</mat-card-subtitle>
+        </mat-card>
+
+
+        <mat-card class="count">
+
+          <button (click)="increase(items)"
+                  [disabled]="items.numberInStock === 0 || ((items.numberInStock + 1 <= (items.toOrder + items.count))  && this.cartService.cart.includes(items))"
+                  mat-icon-button>
+            <mat-icon>add</mat-icon>
+          </button>
+
+
+          <label style="align-self: center; display: flex;">
+            <input [defaultValue]="1" [value]="items.toOrder" class="count-input" max="30" min="1" readonly
+                   style="pointer-events: none; cursor: none">
+          </label>
+
+          <button (click)="decrease(items)"
+                  [disabled]="items.numberInStock === 1 || items.toOrder === 1"
+                  mat-icon-button>
+            <mat-icon>remove</mat-icon>
+          </button>
+
+        </mat-card>
+        <button (click)="deleteProduct(i, items)" mat-raised-button style="background: red; width: 100px" type="button">
+          Usuń
+        </button>
+      </mat-card>
+    </mat-card>
+
+
+  </mat-dialog-content>
+  <mat-card class="dialog1-footer">
+    <button (click)="checkout()" color="accent" mat-raised-button>Podsumuj zamówienie</button>
+    <button (click)="close()" color="primary" mat-raised-button>Zamknij</button>
+  </mat-card>
+</mat-card>
+
+
+
+

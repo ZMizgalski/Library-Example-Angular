@@ -1,0 +1,38 @@
+<mat-card class="news-container">
+  <mat-card *ngIf="!newsLoaded"  style="background: transparent; box-shadow: none">
+    <mat-spinner></mat-spinner>
+  </mat-card>
+  <mat-card *ngIf="newsLoaded" style="display: flex; justify-content: center;flex-direction: column; box-shadow: none;background: transparent">
+    <p *ngIf="newsLoaded" style="text-align: center; font-size: 20px; padding: 30px">Nowo dodane tytuły:</p>
+    <mat-card *ngFor="let product of products" [ngClass]="{newsMPCPH: (isHandset$ | async)}"
+              class="news-main-product-container">
+      <mat-card [ngClass]="{newsIPPH: (isHandset$ | async)}" class="news-img-product">
+        <img [src]="product.file" alt="">
+      </mat-card>
+      <mat-card [ngClass]="{newsPDPH: (isHandset$ | async)}" class="news-product-data"
+                style="height: 104px;align-items: center">
+        <p>
+          <mat-card-title>Tytuł:
+            <mat-card-subtitle>{{product.productName}}</mat-card-subtitle>
+          </mat-card-title>
+        </p>
+        <p>
+          <mat-card-title>Autor:
+            <mat-card-subtitle>{{product.author}}</mat-card-subtitle>
+          </mat-card-title>
+        </p>
+        <p>
+          <mat-card-title>Kategoria:
+            <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
+          </mat-card-title>
+        </p>
+        <p>
+          <mat-card-title>Gatunek:
+            <mat-card-subtitle>{{product.bookType}}</mat-card-subtitle>
+          </mat-card-title>
+        </p>
+      </mat-card>
+    </mat-card>
+  </mat-card>
+
+</mat-card>

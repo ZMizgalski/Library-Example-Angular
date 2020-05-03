@@ -1,0 +1,58 @@
+.content-1 {
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.content-2 {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.main-container {
+  background: #4caf50;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: none;
+
+}
+
+.data-container {
+  padding: 10px;
+  border-radius: 0;
+  box-shadow: none;
+  background: #fafafa;
+}
+
+.dataB {
+  text-align: center;
+  display: flex;
+  box-shadow: none;
+  justify-content: space-around;
+}
+
+.dataA {
+  background: #e2e2e2;
+  box-shadow: none;
+  border-radius: 0;
+  text-align: center
+}
+
+.dataAPhone {
+  display: grid;
+}
+
+.dataBPhone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.noOrders {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+}

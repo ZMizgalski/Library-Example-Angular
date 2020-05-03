@@ -1,0 +1,91 @@
+<mat-card class="addProductContainer">
+  <mat-card *ngIf="productAdded" style="display: flex;align-items: center;width: 100%;flex-direction: column;box-shadow: none;align-self: baseline;background: transparent">
+    <mat-spinner></mat-spinner>
+  </mat-card>
+
+  <mat-card style="background: #a5a5a5; border-radius: 20px; margin-bottom: 10px" *ngIf="!productAdded">
+    <mat-card class="addProductData">
+      <mat-card-title>Dodaj książke</mat-card-title>
+
+      <img *ngIf="submitted" [src]="transform()" alt="" style="width: 200px; height: 200px">
+
+      <form (ngSubmit)="onSubmit(registerForm.value)" [formGroup]="registerForm">
+
+        <mat-card
+          style="display: flex; justify-content: center; margin-left: 50%; box-shadow: none; margin-right: 50%;">
+          <input
+            (change)="onFileChange($event)"
+            type="file"
+          >
+        </mat-card>
+
+        <mat-form-field appearance="outline" color="accent">
+          <label for="ProductName"></label>
+          <input
+            formControlName="productName"
+            id="ProductName"
+            matInput
+            name="productName"
+            placeholder="Tytuł książki"
+            required
+            type="text">
+          <mat-error>
+            <span *ngIf="!registerForm.get('productName').valid && registerForm.get('productName').touched"
+                  style="color: red">Tytuł książki jest wymagany</span>
+          </mat-error>
+
+        </mat-form-field>
+        <mat-form-field appearance="outline" color="accent">
+          <label for="Author"></label>
+          <input
+            formControlName="author"
+            id="Author"
+            matInput
+            name="author"
+            placeholder="Autor"
+            required
+            type="text">
+          <mat-error>
+            <span *ngIf="!registerForm.get('author').valid && registerForm.get('author').touched" style="color: red">Autor jest wymagany</span>
+          </mat-error>
+
+        </mat-form-field>
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Gatunek</mat-label>
+          <mat-select
+            formControlName="bookType"
+            placeholder="Type of the Book"
+            required>
+            <mat-option *ngFor="let type of types" [value]="type.value">
+              {{type.viewValue}}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <span *ngIf="!registerForm.get('bookType').valid && registerForm.get('bookType').touched"
+                  style="color: red">Typ książki wymagany</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Kategoria</mat-label>
+          <mat-select
+            formControlName="category"
+            placeholder="category"
+            required>
+            <mat-option>-</mat-option>
+            <mat-option *ngFor="let category of categories" [value]="category.value">
+              {{category.viewValue}}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <span *ngIf="!registerForm.get('category').valid && registerForm.get('category').touched"
+                  style="color: red">Gatunek wymagany</span>
+          </mat-error>
+        </mat-form-field>
+        <button [disabled]="!registerForm.valid || productAdded" color="accent" mat-raised-button type="submit">
+          Dodaj książke
+        </button>
+      </form>
+    </mat-card>
+  </mat-card>
+
+</mat-card>
