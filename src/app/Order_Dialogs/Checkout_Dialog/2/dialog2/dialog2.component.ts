@@ -4,13 +4,14 @@ import {ShoppingCartService} from '../../../../User/servieces/Product/shopping-c
 import {Dialog1Component} from '../../1/dialog1/dialog1.component';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {catchError} from 'rxjs/operators';
+import {catchError, map, shareReplay} from 'rxjs/operators';
 import {AuthService} from '../../../../User/servieces/auth/auth.service';
 import {UserToOrder} from '../../../../User/servieces/User/user-to-order';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {TokenServiceService} from '../../../../User/servieces/auth/token-service.service';
 import * as jwt_decode from 'jwt-decode';
 import {Router} from '@angular/router';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 
 @Component({
@@ -19,6 +20,13 @@ import {Router} from '@angular/router';
   styleUrls: ['./dialog2.component.css']
 })
 export class Dialog2Component implements OnInit {
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
+
   cartService: ShoppingCartService;
   auth: AuthService;
   tokenService: TokenServiceService;
@@ -31,6 +39,7 @@ export class Dialog2Component implements OnInit {
   constructor(public dialog2: MatDialogRef<Dialog2Component>,
               @Inject(forwardRef(() => TokenServiceService)) tokenService,
               @Inject(forwardRef(() => ShoppingCartService)) cartService,
+              private breakpointObserver: BreakpointObserver,
               @Inject(forwardRef(() => AuthService)) authService,
               private matSnackBar: MatSnackBar,
               private router: Router,

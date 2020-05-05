@@ -94,7 +94,7 @@
 .extraproductcon {
   text-align: -webkit-center;
   margin-left: 270px;
-  min-height: calc(100vh - 37px);
+  box-shadow: none;
 }
 
 .hidden {

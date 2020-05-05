@@ -4,7 +4,7 @@
   </mat-card>
   <mat-card *ngIf="newsLoaded" style="display: flex; justify-content: center;flex-direction: column; box-shadow: none;background: transparent">
     <p *ngIf="newsLoaded" style="text-align: center; font-size: 20px; padding: 30px">Nowo dodane tytuły:</p>
-    <mat-card *ngFor="let product of products" [ngClass]="{newsMPCPH: (isHandset$ | async)}"
+    <mat-card *ngFor="let product of currentItemsToShow" [ngClass]="{newsMPCPH: (isHandset$ | async)}"
               class="news-main-product-container">
       <mat-card [ngClass]="{newsIPPH: (isHandset$ | async)}" class="news-img-product">
         <img [src]="product.file" alt="">
@@ -34,5 +34,7 @@
       </mat-card>
     </mat-card>
   </mat-card>
-
+</mat-card>
+<mat-card *ngIf="newsLoaded" style="display: flex;box-shadow: none;justify-content: space-around;clear: both">
+  <mat-paginator #paginatorNews (page)="onPageChange()" [length]="products.length" [pageSizeOptions]="[3,6,9]"></mat-paginator>
 </mat-card>

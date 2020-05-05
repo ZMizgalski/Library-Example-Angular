@@ -38,13 +38,13 @@ export class RegisterComponent implements OnInit {
           this.isSuccessful = true;
           this.isSignUpFailed = false;
           this.router.navigate(['/login']);
-          this.matSnackBar.open('You have been registered', 'Close', {
+          this.matSnackBar.open('You have been registered', 'Zamknij', {
             verticalPosition: 'top'
           });
         },
         err => {
           this.errorMessage = err.error.message;
-          this.matSnackBar.open(this.errorMessage, 'Close', {
+          this.matSnackBar.open('Coś poszło nie tak', 'Zamknij', {
             verticalPosition: 'top'
           });
           this.isSignUpFailed = true;

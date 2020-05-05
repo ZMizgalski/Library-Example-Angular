@@ -26,6 +26,11 @@
   width: 160px;
 }
 
+
+.phoneF {
+  flex-direction: column !important;
+}
+
 .product-item-data {
   border-radius: 0;
   padding: 0;

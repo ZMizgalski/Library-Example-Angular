@@ -51,9 +51,14 @@
   font-size: 18px;
 }
 
+.phoneF {
+  flex-direction: column !important;
+}
+
 .dialog1-footer {
   justify-content: space-between;
   display: flex;
+  flex-direction: unset;
   box-shadow: none;
   margin-top: auto;
 }

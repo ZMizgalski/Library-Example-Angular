@@ -1,9 +1,9 @@
-<mat-card style="margin: 0; padding: 0; border-radius: 0">
+<mat-card style="margin: 0; padding: 0; border-radius: 0; box-shadow: none">
   <mat-card [ngClass]="{hidden: (isHandset$ | async)}" class="leftFilter">
     <mat-toolbar>
       <p>Filter</p>
       <span style="flex: 1 1 auto"></span>
-      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.clearFilter($event)" color="warn" mat-raised-button name="clearFilter">Wyczyść filter
+      <button [disabled]="!auth.productsLoadedVal" (click)="this.filterService.clearFilter($event)" color="warn" mat-raised-button name="clearFilter">Wyczyść filter
       </button>
     </mat-toolbar>
 
@@ -20,21 +20,21 @@
         </mat-expansion-panel-header>
         <span style="display: flex; flex-flow: column; justify-content: center">
 
-      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Wszystkie')" color="accent"
+      <button [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Wszystkie')" color="accent"
               mat-raised-button style="margin-bottom: 10px">Wszyskie</button>
-      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Przygodowe')" color="accent"
+      <button [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Przygodowe')" color="accent"
               mat-raised-button style="margin-bottom: 10px">Przygodowe</button>
-      <button  [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Podróżnicze')" color="accent"
+      <button  [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Podróżnicze')" color="accent"
               mat-raised-button style="margin-bottom: 10px">Podróżnicze</button>
-      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Historyczne')" color="accent"
+      <button [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Historyczne')" color="accent"
               mat-raised-button style="margin-bottom: 10px">Historyczne</button>
-      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Postapo')" color="accent"
+      <button [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Postapo')" color="accent"
               mat-raised-button style="margin-bottom: 10px">Postapo</button>
-      <button  [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Fantasy')"
+      <button  [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Fantasy')"
               color="accent" mat-raised-button style="margin-bottom: 10px">Fantasy, science fiction</button>
-      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Horror')" color="accent"
+      <button [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Horror')" color="accent"
               mat-raised-button style="margin-bottom: 10px">Horror</button>
-          <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Lektury')" color="accent"
+          <button [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Beletrystyka','Lektury')" color="accent"
                   mat-raised-button style="margin-bottom: 10px">Lektury</button>
       </span>
       </mat-expansion-panel>
@@ -48,11 +48,11 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <span style="display: flex; flex-flow: column; justify-content: center">
-          <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Literatura Dziecięca','Wszystkie')" color="accent"
+          <button [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Literatura Dziecięca','Wszystkie')" color="accent"
                   mat-raised-button style="margin-bottom: 10px">Wszyskie</button>
-      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Literatura Dziecięca','Bajki')" color="accent"
+      <button [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Literatura Dziecięca','Bajki')" color="accent"
               mat-raised-button style="margin-bottom: 10px">Bajki</button>
-      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Literatura Dziecięca','Lektury')" color="accent"
+      <button [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Literatura Dziecięca','Lektury')" color="accent"
               mat-raised-button>Lektury</button>
       </span>
       </mat-expansion-panel>
@@ -66,19 +66,19 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <span style="display: flex; flex-flow: column; justify-content: center">
-      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Komiksy','Wszystkie')" color="accent" mat-raised-button
+      <button [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Komiksy','Wszystkie')" color="accent" mat-raised-button
               style="margin-bottom: 10px">Wszyskie</button>
-      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Komiksy','Przygodowe')" color="accent"
+      <button [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Komiksy','Przygodowe')" color="accent"
               mat-raised-button style="margin-bottom: 10px">Przygodowe</button>
-      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Komiksy','Podróżnicze')" color="accent"
+      <button [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Komiksy','Podróżnicze')" color="accent"
               mat-raised-button style="margin-bottom: 10px">Podróżnicze</button>
-      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Komiksy','Historyczne')" color="accent"
+      <button [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Komiksy','Historyczne')" color="accent"
               mat-raised-button style="margin-bottom: 10px">Historyczne</button>
-      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Komiksy','Postapo')" color="accent" mat-raised-button
+      <button [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Komiksy','Postapo')" color="accent" mat-raised-button
               style="margin-bottom: 10px">Postapo</button>
-      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Komiksy','Fantasy')" color="accent"
+      <button [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Komiksy','Fantasy')" color="accent"
               mat-raised-button style="margin-bottom: 10px">Fantasy, science fiction</button>
-      <button [disabled]="!auth.productsLoaded" (click)="this.filterService.buttonFilter($event,'Komiksy','Horror')" color="accent" mat-raised-button
+      <button [disabled]="!auth.productsLoadedVal" (click)="this.filterService.buttonFilter($event,'Komiksy','Horror')" color="accent" mat-raised-button
               style="margin-bottom: 10px">Horror</button>
       </span>
       </mat-expansion-panel>
@@ -91,7 +91,7 @@
       <p>
         <label>
           <input placeholder="Wyszukaj"
-                 [disabled]="!auth.productsLoaded"
+                 [disabled]="!auth.productsLoadedVal"
                  [(ngModel)]="this.filterService.textStringForFilter"
                  style="border-radius: 5px; border: none; outline: none!important; background: rgba(200, 200, 200, 0.72); line-height: 25px;padding-left: 10px"
                  type="text">
@@ -101,7 +101,7 @@
     <mat-card style="margin: 10%; justify-content: center" *ngIf="!filterService.BgcategoryNotClicked">
     <span style="display: flex; flex-flow: column; justify-content: center">
      <mat-checkbox (change)="this.filterService.filter($event, matCheckboxes.category)"
-                   [disabled]="!auth.productsLoaded"
+                   [disabled]="!auth.productsLoadedVal"
                    *ngFor="let matCheckboxes of filterService.checkboxes$ | async" [(ngModel)]="matCheckboxes.isChecked"
                    [value]="matCheckboxes.category">{{matCheckboxes.category}}</mat-checkbox>
     </span>

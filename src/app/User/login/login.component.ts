@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
         const decodedToken = jwt_decode(token2);
         this.roles = decodedToken.roles;
         this.authService.logged.next(this.isLoggedIn);
-        this.matSnackBar.open('Zostałeś zalogowany', 'Close', {
+        this.matSnackBar.open('Zostałeś zalogowany', 'Zamknij', {
           verticalPosition: 'top'
         });
         this.reloadPage();
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
       err => {
         this.authService.logged.next(null);
         this.errorMessage = err.error.message;
-        this.matSnackBar.open('Zły email bądz hasło', 'Close', {
+        this.matSnackBar.open('Zły email bądz hasło', 'Zamknij', {
           verticalPosition: 'top'
         });
         this.isLoginFailed = true;

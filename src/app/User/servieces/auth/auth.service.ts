@@ -23,8 +23,7 @@ export class AuthService {
   productListed = false;
   isLoggedIn = false;
 
-
-  productsLoaded = false;
+  productsLoadedVal = false;
 
   logged = new BehaviorSubject<any>(null);
 
@@ -45,10 +44,7 @@ export class AuthService {
 
 
   getAllProducts(): Observable<any> {
-    return this.http.get(this.staffURL + 'getAllProducts')
-      .pipe(
-        catchError(this.handleError())
-      );
+    return this.http.get(this.staffURL + 'getAllProducts');
   }
 
   deleteProduct(id: string): Observable<any> {

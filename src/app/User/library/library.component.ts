@@ -19,6 +19,7 @@ export class LibraryComponent implements OnInit, DoCheck {
   private deleted = false;
   noOrders = false;
   orderIsBusy = false;
+  ld = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -34,16 +35,22 @@ export class LibraryComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-  this.isLoggedIn = !!this.tokenStorageService.getToken();
-  if (this.isLoggedIn) {
+    if (this.ld){
+      this.ld = false;
+    }
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    if (this.isLoggedIn) {
       const token2 = this.tokenStorageService.getToken();
       const decodedToken = jwt_decode(token2);
       const username = decodedToken.sub;
       this.loggedUser = new User(decodedToken.email, username, decodedToken.read, decodedToken.bookedNow);
-      this.auth.getAllOrdersByEmail(this.loggedUser.email).subscribe(data => {
-        this.orders = data;
-        this.ordersLoaded = true;
-      });
+      if (!this.ordersLoaded) {
+        this.auth.getAllOrdersByEmail(this.loggedUser.email).subscribe(data => {
+          this.orders = data;
+          this.ordersLoaded = true;
+          this.ld = true;
+        });
+      }
     }
   }
 
@@ -68,11 +75,14 @@ export class LibraryComponent implements OnInit, DoCheck {
           const token2 = this.tokenStorageService.getToken();
           const decodedToken = jwt_decode(token2);
           this.loggedUser = new User(decodedToken.email, decodedToken.sub, decodedToken.read, decodedToken.bookedNow);
-          this.auth.getAllOrdersByEmail(this.loggedUser.email).subscribe(data => {
-            this.orders = data;
-            this.deleted = false;
-            this.ordersLoaded = true;
-          });
+          if (!this.ordersLoaded && this.ld) {
+            this.auth.getAllOrdersByEmail(this.loggedUser.email).subscribe(data => {
+              this.orders = data;
+              this.deleted = false;
+              this.ordersLoaded = true;
+              this.ld = false;
+            });
+          }
         }
       } else {
         this.noOrders = true;

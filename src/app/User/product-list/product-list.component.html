@@ -6,7 +6,7 @@
     <p style="text-align: center">Lista Książek:</p>
 
 
-    <mat-card *ngFor="let product of products" class="admin-product">
+    <mat-card *ngFor="let product of currentItemsToShow" class="admin-product">
       <mat-card class="img-admin">
         <img [ngClass]="{phoneImg: (isHandset$ | async)}" class="img-list" [src]="product.file" alt="">
       </mat-card>
@@ -50,5 +50,5 @@
       </mat-card>
     </mat-card>
   </mat-card>
-
+  <mat-paginator *ngIf="isProductAdListLoaded" #paginatorADP (page)="onPageChange()" [length]="products.length" [pageSizeOptions]="[3,6,9]"></mat-paginator>
 </mat-card>

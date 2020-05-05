@@ -23,11 +23,9 @@ export class ProductsComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver, public filterService: FilterServieceService, public auth: AuthService) {
   }
 
+
   ngOnInit() {
     this.cols = (window.innerWidth <= 400) ? 1 : 3;
-  }
-  onResize(event) {
-    this.cols = (event.target.innerWidth <= 400) ? 1 : 3;
   }
 
 }

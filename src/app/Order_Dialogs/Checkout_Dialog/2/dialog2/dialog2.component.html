@@ -1,5 +1,13 @@
 <mat-card class="dialog1-container">
-  <mat-card style="padding: 0;width: 100%;min-width: 300px;margin: 0;display: flex;justify-content: space-between; box-shadow: none">
+  <mat-card style="
+    padding: 0;
+    width: 100%;
+    min-width: 300px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: none;">
     <button (click)="GoBack()" [disabled]="orderClicked" color="warn" mat-raised-button>Poprzednia strona</button>
     <h2 mat-dialog-title>Podsumowane zamówienie</h2>
   </mat-card>
@@ -30,7 +38,7 @@
 
 
   </mat-dialog-content>
-  <mat-card class="dialog1-footer">
+  <mat-card class="dialog1-footer" [ngClass]="{phoneF: (isHandset$ | async)}">
     <button [disabled]="orderClicked" (click)="CompleteOrder(cartService.orderedItems, userToOrder.email)" color="accent" mat-raised-button>
       Złóż zamówienie
     </button>

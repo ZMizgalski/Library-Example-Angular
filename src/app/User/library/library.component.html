@@ -5,15 +5,15 @@
   <mat-card class="content-1" *ngIf="ordersLoaded">
 
     <mat-card class="content-2">
-      <mat-card *ngIf="noOrders" class="noOrders">
-        <mat-card-title style="text-align: center;">
+      <mat-card *ngIf="noOrders" class="noOrders" style="text-align: center;" >
+        <mat-card-title >
           Nie masz żadnych wypożyczonych książek!
         </mat-card-title>
         <button [routerLink]="['/products']" color="accent" mat-raised-button>
           Księgozbiór
         </button>
       </mat-card>
-      <mat-card-title *ngIf="!noOrders" style="width: 100px">
+      <mat-card-title *ngIf="!noOrders" style="text-align: center">
         Wypożyczone Książki
       </mat-card-title>
       <mat-card *ngFor="let order of orders" class="main-container">

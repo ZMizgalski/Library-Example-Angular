@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {map, shareReplay} from 'rxjs/operators';
 import {AuthService} from '../../User/servieces/auth/auth.service';
@@ -8,6 +8,8 @@ import {animate, state, style, transition, trigger, } from '@angular/animations'
 import {PageFilterServieceService} from '../../User/servieces/pageFilter/page-filter-serviece.service';
 import {TokenServiceService} from '../../User/servieces/auth/token-service.service';
 import * as jwt_decode from 'jwt-decode';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 
 
 @Component({
@@ -42,11 +44,12 @@ export class MainNavComponent implements OnInit {
     );
  // public role: Role;
  // private isAdminNow: boolean;
-
   public card = [];
   isOpen = false;
   value: string;
   user: any;
+
+
 
   private roles: string[];
   isLoggedIn = false;

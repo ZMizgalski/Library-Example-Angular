@@ -63,6 +63,10 @@
 
 }
 
+::ng-deep .mat-paginator .mat-paginator-container {
+  display: unset;
+}
+
 .overlay {
   color: #fff;
   opacity: 0;

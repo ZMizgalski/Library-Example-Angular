@@ -10,6 +10,7 @@ import {MatExpansionPanel} from '@angular/material/expansion';
 })
 export class FilterServieceService implements OnInit {
 
+
   BgcategoryNotClicked = false;
   // for button filter
   type2 = {};
