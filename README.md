@@ -1,27 +1,50 @@
-# LibraryExample
+# Library-Example-Angular
+> Basic library backend made with Java 14 and Spring Boot.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
+## Table of Contents
+* [General Info](#general-information)
+* [Technologies Used](#technologies-used)
+* [Features](#features)
+* [Setup](#setup)
+* [Usage](#usage)
+* [Project Status](#project-status)
+* [Room for Improvement](#room-for-improvement)
+* [Contact](#contact)
+* [License](#license)
 
-## Development server
+## General Information
+- This project was made to get my internship in [Andea](https://www.andea.com/). My task was to create a library orders and readers. I upgraded it a little bit because I added an admin panel when you can add your content dynamically.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Technologies Used
+- Angular
+- Angular Material
 
-## Code scaffolding
+## Features
+List the ready features here:
+- Login 
+- Responsive design
+- Password reset
+- Orders
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Setup
+- Run `npm i`
+- Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Build
+## Usage
+1. Create a folder named you like.
+2. Inside your folder, open console and paste: `git clone https://github.com/ZMizgalski/Library-Example-Angular.git`
+3. Then you are ready to go just open it in any Editor. (I prefer VSCode) [Download here](https://code.visualstudio.com/)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Project Status
+Project is:  _complete_ .
 
-## Running unit tests
+## Room for Improvement
+- Design
+- Filters
+- Security
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Contact
+Created by [@zmizgalski](https://zmizgalski.github.io/) - feel free to contact me!
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## License
+This project is open source and available under the [... License](https://github.com/ZMizgalski/Library-Example-Angular/blob/master/LICENSE).
